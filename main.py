@@ -1,5 +1,5 @@
 from PIL import Image 
-from argparse import ArgumentParser, Namespace
+from argparse import ArgumentParser
 import sys, random, math
 import numpy as np 
 
@@ -80,7 +80,7 @@ def main():
     parser.add_argument('--cols',dest='cols', required=True)
     parser.add_argument('--morelevels', dest='morelevels',action='store_true')
 
-    args: Namespace = parser.parse_args()
+    args = parser.parse_args()
 
     imageFile = args.imageFile
 
