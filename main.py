@@ -42,11 +42,11 @@ def convert(fileName, cols, scale, moreLevels):
     # let's generate a list of dimensions
     aImage = []
 
-    for index in range(rows):
-        y1 = int(index * height)
-        y2 = int((index + 1) * height)
+    for index01 in range(rows):
+        y1 = int(index01 * height)
+        y2 = int((index01 + 1) * height)
 
-        if index == (rows - 1):
+        if index01 == (rows - 1):
             y2 = HEIGHT
         
         aImage.append("")
@@ -63,10 +63,12 @@ def convert(fileName, cols, scale, moreLevels):
             avg = int(averageToGet(img))
 
             if moreLevels:
-                pass
+                greyScalValue = greyScale01[int((avg*69)/255)]
+            else: 
+                greyScalValue = greyScale02[int((avg*9)/255)]
 
-
-
+            aImage[index01] += greyScalValue
+    return aImage
 
 
 def main():
@@ -96,11 +98,15 @@ def main():
     
     print("Generating.....")
 
+    aImage = convert(imageFile,cols,scale, args.moreLevels)
 
     with open(outFile,"w") as file:
-        pass 
+        for row in aImage:
+            file.write(row + "\n")
+    
+    print("ASCII art written to %s" % outFile)
 
 
 
 if __name__ == "__main__":
-    pass
+    main()
